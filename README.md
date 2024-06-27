@@ -1,33 +1,32 @@
 # Backend de la aplicación
 ---
 ## Descripción
-Este repositorio contiene el backend encargado de procesar los datos, gestionar la lógica de negocio y asegurar el funcionamiento correcto de la aplicación desde el servidor.
+En este repositorio encontrarás todo el backend, que se encarga de procesar los datos, manejar la lógica del negocio y asegurar que todo funcione correctamente desde el servidor.
 ## Justificación de la tecnología empleada
 ---
-Hemos optado por utilizar Java por su arquitectura orientada a objetos. Por su parte, Spring Boot simplifica el desarrollo del back, además de ofrecer herramientas para la gestión de seguridad.
+Elegimos Java debido a su arquitectura orientada a objetos, que es bastante robusta. Además, utilizamos Spring Boot porque facilita mucho el desarrollo del backend y ofrece herramientas útiles para la gestión de la seguridad.
 ## Consideraciones
 ---
-El archivo configura la conexión a una base de datos MySQL local. Es necesario modificar los parámetros de autentificación en **application.properties** para acceder correctamente al servidor.
-Para el correcto despliegue del back-end es necesario utilizar **IntelliJ IDEA**, concretamente la versión 2023.1.
+El archivo configura la conexión a una base de datos MySQL local. Es necesario ajustar los parámetros de autenticación en **application.properties** para conectarse al servidor correctamente. Para desplegar el backend, recomendamos usar **IntelliJ IDEA**, específicamente la versión 2023.1.
 ## Estructura del proyecto
 ---
 - **config/**
-  - Configuración de la aplicación, manejo de autenticación, seguridad y CORS.
+  - Aquí está la configuración de la aplicación, incluyendo manejo de autenticación, seguridad y CORS.
 
 - **controller/**
-  - Controladores para manejar las solicitudes relacionadas con autenticación, carritos de compras, productos en carritos y usuarios.
+  - Este directorio contiene los controladores que manejan las solicitudes relacionadas con autenticación, carritos de compras, productos en carritos y usuarios.
 
 - **dto/**
-  - DTOs (Data Transfer Objects) para transferir datos entre capas del sistema, incluyendo carritos, productos en carritos, solicitudes de creación y actualización de carritos, y autenticación.
+  - En esta carpeta se encuentran los DTOs (Data Transfer Objects), que se utilizan para transferir datos entre las diferentes capas del sistema. Incluye carritos, productos en carritos, y solicitudes de creación y actualización de carritos, además de autenticación.
 
 - **exceptions/**
-  - Manejo global de excepciones para los controladores de la aplicación.
+  - Aquí se maneja de forma global las excepciones para los controladores de la aplicación.
 
 - **models/**
-  - Definiciones de modelos para representar entidades principales del sistema, como carritos de compras, productos en carritos, productos de supermercado y usuarios.
+  - Contiene las definiciones de los modelos que representan las entidades principales del sistema, como carritos de compras, productos en carritos, productos de supermercado y usuarios.
 
 - **repository/**
-  - Interfaces de repositorio para interactuar con la base de datos, incluyendo operaciones CRUD y consultas personalizadas para carritos, productos en carritos, productos de supermercado y usuarios.
+  - Este directorio incluye las interfaces de repositorio para interactuar con la base de datos. Aquí se realizan operaciones CRUD y consultas personalizadas para carritos, productos en carritos, productos de supermercado y usuarios.
 
 - **services/**
-  - Servicios que encapsulan la lógica de negocio de la aplicación, incluyendo autenticación, gestión de carritos de compras, productos en carritos, productos de supermercado y usuarios.
+  - Los servicios encapsulan la lógica de negocio de la aplicación, gestionando la autenticación, los carritos de compras, los productos en carritos, los productos de supermercado y los usuarios.

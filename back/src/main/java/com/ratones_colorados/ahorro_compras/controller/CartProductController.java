@@ -19,8 +19,9 @@ public class CartProductController {
     private CartProductService cartProductService;
 
     @PostMapping("/{cartId}/save")
-    public ResponseEntity<List<CartProduct>> saveProducts(@PathVariable Long cartId, @RequestBody List<CartProductDto> products) {
-        // Убедитесь, что каждый продукт имеет правильный cartId
+    public ResponseEntity<List<CartProduct>> saveProducts(@PathVariable Long cartId,
+            @RequestBody List<CartProductDto> products) {
+
         products.forEach(product -> product.setCartId(cartId));
         List<CartProduct> savedProducts = cartProductService.saveProducts(products);
         return ResponseEntity.ok(savedProducts);
@@ -39,7 +40,8 @@ public class CartProductController {
     }
 
     @PutMapping("/updateProduct/{productId}")
-    public ResponseEntity<CartProduct> updateCartProduct(@PathVariable Long productId, @RequestBody UpdateCartProductRequest updateCartProductRequest) {
+    public ResponseEntity<CartProduct> updateCartProduct(@PathVariable Long productId,
+            @RequestBody UpdateCartProductRequest updateCartProductRequest) {
         CartProduct updatedProduct = cartProductService.updateProduct(productId, updateCartProductRequest);
         if (updatedProduct == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -47,5 +49,3 @@ public class CartProductController {
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 }
-
-
