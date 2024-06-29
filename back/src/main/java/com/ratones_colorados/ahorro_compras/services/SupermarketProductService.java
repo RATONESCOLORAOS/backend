@@ -1,21 +1,29 @@
 package com.ratones_colorados.ahorro_compras.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import com.ratones_colorados.ahorro_compras.models.SupermarketProduct;
 import com.ratones_colorados.ahorro_compras.repository.SupermarketProductRepository;
+import com.ratones_colorados.ahorro_compras.repository.SupermarketProductSpecifications;
 
 import java.util.*;
 
 @Service
 public class SupermarketProductService {
 
+    private final SupermarketProductRepository supermarketProductRepository;
+
     @Autowired
-    private SupermarketProductRepository supermarketProductRepository;
+    public SupermarketProductService(SupermarketProductRepository supermarketProductRepository) {
+        this.supermarketProductRepository = supermarketProductRepository;
+    }
 
     public List<SupermarketProduct> searchProductByNameAndCategory(String productName, String categoria) {
-        String productNamePrefix = productName.split(" ")[0];
-        return supermarketProductRepository.findByProductoStartingWithAndCategoria(productNamePrefix, categoria);
+        String[] words = productName.split(" ");
+        Specification<SupermarketProduct> spec = Specification.where(SupermarketProductSpecifications.categoriaEquals(categoria))
+                .and(SupermarketProductSpecifications.productoContainsWords(words));
+        return supermarketProductRepository.findAll(spec);
     }
 
     public Map<String, Object> getTotalPriceForCart(List<String> productNames, List<Integer> quantities, List<String> categories, String supermarket) {
